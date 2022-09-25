@@ -1,0 +1,61 @@
+1.1 Affichage :
+42 //appel de la fonction meth de mere
+42 // appel de la fonction printMeth de mere
+24 //appel de la fonction meth de fille
+24 // appel de la fonction printMeth de mere qui fait appel a meth de fille
+24 //appel de la fonction meth de fille
+24 // appel de la fonction printMeth de mere qui fait appel a meth de fille
+
+1.2 s'il est dans fille il peut acceder a mere et fille et s'il est dans mere il accede juste a mere
+
+1.3 Si les methodes meth etaient statiques on aura l'affichage suivant
+42	
+42
+24
+42
+42
+42
+Dans printMeth lors de l'appel a meth il execute meth de mere car elle est statique
+et lors de l appel de meth dans le troisième cas, il execute meth de mere car la methode 
+statique agit sur les variables de classe qui est la classe mere dans ce cas
+
+1.4 si meth sont des champs 
+42	
+42
+24
+42 // execute printMeth de la classe mere qui accede a meth de mere
+42 // affiche 42 car merefille est de type mere
+42 // execute printMeth de la classe mere qui accede a meth de mere
+
+2.1
+Les erreurs de compilation sont les suivantes :
+The method miage() is undefined for the type Mere
+The method miage() is undefined for the type Mere
+Elles apparaissent car la méthode miage() n'est pas implémentée dans la classe Mère.
+
+2.2
+Si on enlève les appels à la méthode Miage on aura plus d’erreur.
+
+2.3
+- Une redéfinition, c'est lorsqu'une classe Fille a une fonction de même signature qu’une fonction de la classe Mere (même nom
+et entrées  mais avec un comportement différent)
+- Une surcharge est le fait de définir plusieurs fonctions avec le meme nom dans une classe mais avec 
+des signatures différentes (type d'arguments différents, nombre d'arguments différents…)
+Les redéfinitions :
+- a(), b(), c(), d(), f(), g(), j(), l(), m()
+Les surcharges dans Mere :
+- c()
+Les surcharges dans Fille :
+- c(), d()
+
+2.4
+Miage -> fille.miage(); -> La méthode miage() de la classe Fille sert à afficher « miage »
+Miage -> ((Fille) mereFille).miage(); -> on peut appeler la méthode miage de Fille
+Mere_a -> mere.a(); -> La méthode a() de la classe Mere permet d’afficher « Mere_a »
+Fille_a -> mereFille.a(); -> L’objet mereFille est de type Mere mais il est instancié en Fille. Ainsi lorsqu’on fait cette exécution, on appelle la méthode a() de la classe Fille, c’est pourquoi on affiche « Fille_a. »
+Fille_a-> fille.a(); ->L’objet mereFille est de type Mere mais il est instancié en Fille. Ainsi lorsqu’on fait cette exécution, on appelle la méthode a() de la classe Fille, c’est pourquoi on affiche « Fille_a. »
+Fille_a-> ((Mere) mereFille).a(); -> mereFille.a() et ((Mere) mereFille).a() renvoie le même résultat car mereFille est déjà de type mère donc le caster en Mere ne change rien. On apelle donc une nouvelle fois la méthode a() de la classe Fille qui affiche « Fille_a »
+Fille_b(Fille) -> mereFille.b(null); -> L’objet mereFille est de type Mere mais il est instancié en Fille. Ainsi, lorsqu’on exceute ce code on appelle la méthode b(Fille fille) de la classe Fille qui affiche « Fille_b(Fille). »
+Mere_c -> mereFille.c(); -> On appelle la méthode c() de la classe Mere lors de cette exécution car cette méthode n’a pas été redéfinit dans la classe Fille.
+Fille_c(Mere) -> mereFille.c(mere); -> L’objet mereFille est de type Mere mais il est instancié en Fille. Ainsi, lorsqu’on exécute ce code on a la méthode c( Mere mere) de la classe Fille qui affiche « Fille_c(Mere) »
+Fille_c(Mere) -> mereFille.c(mereFille); -> L’objet mereFille étant de type Mere, on suitle même raisonnement qu’a l’affichage précédent et on affiche « Fille_c(Mere) »
